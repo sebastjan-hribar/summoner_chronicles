@@ -36,12 +36,12 @@ General logic
 Card types
 ----------
 
-01. Beasts
+### 01. Beasts ######
   01.1 Dragons
   01.2 Dire wolfs
 
-02. Spells
-----------
+### 02. Spells ######
+
 
   02.1 Heal
   02.2 Ice
