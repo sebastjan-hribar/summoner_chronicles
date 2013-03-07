@@ -11,7 +11,7 @@ In folder "terminal" there is the working terminal version of the game.
 
 
 
-###### General logic ######
+General logic
 
 01. Player is presented with the general game goal and possible card types.
 02. Human player states their name (computer name is randomly selected).
@@ -31,7 +31,8 @@ In folder "terminal" there is the working terminal version of the game.
 13. If after 25 turns they both still live, the winner is the one with higher
     health points.
 
-###### Card types ######
+
+Card types
 01. Beasts
   01.1 Dragons
   01.2 Dire wolfs
@@ -42,7 +43,7 @@ In folder "terminal" there is the working terminal version of the game.
   02.3 Fire
 
 
-##### TODO #####
+TODO
 01. Review and refactor the HP and damage dealing system in terms of amount
     of points. []
 02. Turns are counted and this is used for damage over time and so forth. []
@@ -56,10 +57,10 @@ In folder "terminal" there is the working terminal version of the game.
     cards played, depending on the opponent's health. []
 
 
-##### License #####
+License
 Creative Commons - Attribution Share Alike
 
-##### Credits #####
+Credits
 I would like to thank the ruby community for all the support and help
 with this project, especially to Jesús Gabriel y Galán, Jan Ewald and others
 on the Ruby
