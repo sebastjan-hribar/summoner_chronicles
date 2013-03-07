@@ -1,5 +1,5 @@
 Summoner's Chronicles (Dragons and Direwolves)
-===================
+==============================================
 
 The working title of this game is Dragons and Direwolves and it simulates a battle
 in a card trading game.
@@ -12,6 +12,7 @@ In folder "terminal" there is the working terminal version of the game.
 
 
 General logic
+-------------
 
 01. Player is presented with the general game goal and possible card types.
 02. Human player states their name (computer name is randomly selected).
@@ -33,17 +34,23 @@ General logic
 
 
 Card types
+----------
+
 01. Beasts
   01.1 Dragons
   01.2 Dire wolfs
 
 02. Spells
+----------
+
   02.1 Heal
   02.2 Ice
   02.3 Fire
 
 
 TODO
+----
+
 01. Review and refactor the HP and damage dealing system in terms of amount
     of points. []
 02. Turns are counted and this is used for damage over time and so forth. []
@@ -58,9 +65,11 @@ TODO
 
 
 License
+-------
 Creative Commons - Attribution Share Alike
 
 Credits
+-------
 I would like to thank the ruby community for all the support and help
 with this project, especially to Jesús Gabriel y Galán, Jan Ewald and others
 on the Ruby
