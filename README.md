@@ -37,15 +37,13 @@ Card types
 ----------
 
 ### 01. Beasts ######
-  01.1 Dragons
-  01.2 Dire wolfs
+  * Dragons
+  * Dire wolfs
 
 ### 02. Spells ######
-
-
-  02.1 Heal
-  02.2 Ice
-  02.3 Fire
+  * Heal
+  * Ice
+  * Fire
 
 
 TODO
