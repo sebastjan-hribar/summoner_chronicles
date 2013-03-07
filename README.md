@@ -38,7 +38,7 @@ Card types
 
 ### 01. Beasts ######
   * Dragons
-  * Dire wolfs
+  * Dire wolves
 
 ### 02. Spells ######
   * Heal
