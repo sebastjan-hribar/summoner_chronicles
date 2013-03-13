@@ -147,8 +147,9 @@ class SummonerChronicles < Shoes
     #    prompt
     #      hm_card = hm_deck[(gets.to_i) - 1]
     #      ai_card = ai_deck.sample
+button "test it" do
 append {@hm_deck.each {|c| para c.name}}
-
+end
 
 #fight_turn
 
