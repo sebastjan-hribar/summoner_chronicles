@@ -31,6 +31,89 @@ module DragonsDireWolves
         @ai_deck << healing_spell = HEAL.new(healing_spell)}
       end
 
+      def fight_turn(hm_card)
+          ## The cards effects are activated (opponent sequence is random)
+
+          players = [@hm_player, @ai_player]
+          opponent = players.sample
+
+          if opponent == @ai_player
+                  own = @hm_player
+                  card = hm_card
+                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+            if card.respond_to? :attack
+                  append {para "#{card.name} hits with:"
+                          para puts card.damage(arena)}
+                  card.effect(opponent, card, own, arena)
+            elsif card.respond_to? :heal
+                  append {para "#{card.name} heals for:"
+                          para card.heal}
+                  card.effect(opponent, card, own, arena)
+            else
+            end
+
+            opponent = @hm_player
+                  own = @ai_player
+                  card = ai_card
+                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+            if card.respond_to? :attack
+                  append {para "#{card.name} hits with:"
+                          para card.damage(arena)}
+                  card.effect(opponent, card, own, arena)
+            elsif card.respond_to? :heal
+                  append {para "#{card.name} heals for:"
+                          para card.heal}
+                  card.effect(opponent, card, own, arena)
+            else
+            end
+
+          elsif opponent == @hm_player
+                  own = @ai_player
+                  card = ai_card
+                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+            if card.respond_to? :attack
+                  append {para "#{card.name} hits with:"
+                          para card.damage(arena)}
+                  card.effect(opponent, card, own, arena)
+            elsif card.respond_to? :heal
+                  append {para "#{card.name} heals for:"
+                          para card.heal}
+                  card.effect(opponent, card, own, arena)
+            else
+            end
+
+            opponent = @ai_player
+                  own = @hm_player
+                  card = hm_card
+                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+            if card.respond_to? :attack
+                  append {para "#{card.name} hits with:"
+                          para card.damage(arena)}
+                  card.effect(opponent, card, own, arena)
+            elsif card.respond_to? :heal
+                  append {para "#{card.name} heals for:"
+                          para card.heal}
+                  card.effect(opponent, card, own, arena)
+            else
+            end
+          else
+          end
+
+
+     #     hm_deck.delete(hm_card)
+     #     ai_deck.delete(ai_card)
+
+     #     puts "---------------------------------------------------------------------"
+     #     puts "#{@hm_player.name}'s health is #{@hm_player.hp}."
+     #     puts "#{ai_player.name}'s health is #{ai_player.hp}."
+     #     puts "---------------------------------------------------------------------"
+
+      end
+
+
+
+
+
       # AI player
       class AIPLAYER
         attr_accessor :name, :hp
