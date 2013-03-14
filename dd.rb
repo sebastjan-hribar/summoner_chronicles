@@ -59,7 +59,7 @@ class SummonerChronicles < Shoes
           # 4. The player states the number of cards for each type in the deck.
           # The number of cards in the deck must not be smaller than 20 and not
           # greater than 25.
-          @hm_deck = []
+          @@hm_deck = []
           @ai_deck = []
 
 
@@ -96,16 +96,16 @@ class SummonerChronicles < Shoes
           @ai_deck_healing_spells = @possible_cards[:healing_spell].sample(rand(3)+3)
 
           # 7. The sorted player cards are generated.
-          generate_dragons(@hm_deck_dragons, @hm_deck)
-          generate_dire_wolves(@hm_deck_dire_wolves, @hm_deck)
-          generate_healing_spells(@hm_deck_healing_spells, @hm_deck)
+          generate_dragons(@hm_deck_dragons, @@hm_deck)
+          generate_dire_wolves(@hm_deck_dire_wolves, @@hm_deck)
+          generate_healing_spells(@hm_deck_healing_spells, @@hm_deck)
 
           # 8. Generate AI cards
           generate_ai_dragons(@ai_deck_dragons, @ai_deck)
           generate_ai_dire_wolves(@ai_deck_dire_wolves, @ai_deck)
           generate_ai_healing_spells(@ai_deck_healing_spells, @ai_deck)
           
-          append{@hm_deck.each {|c| para c.name}}
+          append{@@hm_deck.each {|c| para c.name}}
           append{subtitle link("Enter battle") {visit '/battle'}}
           end
         end
@@ -147,9 +147,13 @@ class SummonerChronicles < Shoes
     #    prompt
     #      hm_card = hm_deck[(gets.to_i) - 1]
     #      ai_card = ai_deck.sample
-button "test it" do
-append {@hm_deck.each {|c| para c.name}}
-end
+##button "test it" do
+#append {@@hm_deck.each {|c| para c.name}}
+#end
+#@@hm_deck = ["dasdas", "asdasdas"]
+@selection = []
+@@hm_deck.each {|c| @selection << c.name}
+@card = list_box items: @selection
 
 #fight_turn
 

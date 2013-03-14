@@ -2,33 +2,33 @@ module DragonsDireWolves
 
       # The sorted player cards are generated.
       def generate_dragons(hm_deck_dragons, hm_deck)
-        @hm_deck_dragons.each {|dragon|
-        @hm_deck << dragon = DRAGON.new(dragon)}
+        hm_deck_dragons.each {|dragon|
+        hm_deck << dragon = DRAGON.new(dragon)}
       end
 
       def generate_dire_wolves(hm_deck_dire_wolves, hm_deck)
-        @hm_deck_dire_wolves.each {|dire_wolf|
-        @hm_deck << dire_wolf = DIRE_WOLF.new(dire_wolf) }
+        hm_deck_dire_wolves.each {|dire_wolf|
+        hm_deck << dire_wolf = DIRE_WOLF.new(dire_wolf) }
       end
 
       def generate_healing_spells(hm_deck_healing_spells, hm_deck)
-        @hm_deck_healing_spells.each {|healing_spell|
-        @hm_deck << healing_spell = HEAL.new(healing_spell)}
+        hm_deck_healing_spells.each {|healing_spell|
+        hm_deck << healing_spell = HEAL.new(healing_spell)}
       end
 
       # Generate AI cards
       def generate_ai_dragons(ai_deck_dragons, ai_deck)
-        @ai_deck_dragons.each {|dragon|ai_deck << dragon = DRAGON.new(dragon)}
+        ai_deck_dragons.each {|dragon|ai_deck << dragon = DRAGON.new(dragon)}
       end
 
       def generate_ai_dire_wolves(ai_deck_dire_wolves, ai_deck)
-        @ai_deck_dire_wolves.each {|dire_wolf|
-        @ai_deck << dire_wolf = DIRE_WOLF.new(dire_wolf) }
+        ai_deck_dire_wolves.each {|dire_wolf|
+        ai_deck << dire_wolf = DIRE_WOLF.new(dire_wolf) }
       end
 
       def generate_ai_healing_spells(ai_deck_healing_spells, ai_deck)
-        @ai_deck_healing_spells.each {|healing_spell|
-        @ai_deck << healing_spell = HEAL.new(healing_spell)}
+        ai_deck_healing_spells.each {|healing_spell|
+        ai_deck << healing_spell = HEAL.new(healing_spell)}
       end
 
       def fight_turn(hm_card)
