@@ -29,19 +29,19 @@ class SummonerChronicles < Shoes
           # Define and create human player
           para NAME_PROMPT
 
-          @players = []
+
           @player_name = edit_line; @player_name_button = button "Submitt name" do 
-            @players << @hm_player = HMPLAYER.new(@player_name)
+            @@hm_player = HMPLAYER.new(@player_name)
             @player_name.clear
             @player_name_button.clear
-            alert("Player #{@hm_player.name} was created.")
+            alert("Player #{@@hm_player.name} was created.")
             end
 
 
           # Select and create computer players
           @possible_ai_players = ["High Priestess of Eltia",
           "Summoner of the Great Temple", "Lord of Dibia", "Great Assassin of the West"]
-          @players << @ai_player = AIPLAYER.new(@possible_ai_players.sample)
+          @@ai_player = AIPLAYER.new(@possible_ai_players.sample)
 
 
           # 3. Possible cards
@@ -60,7 +60,7 @@ class SummonerChronicles < Shoes
           # The number of cards in the deck must not be smaller than 20 and not
           # greater than 25.
           @@hm_deck = []
-          @ai_deck = []
+          @@ai_deck = []
 
 
           para "-----------------------------------------------------------------------------"
@@ -101,9 +101,9 @@ class SummonerChronicles < Shoes
           generate_healing_spells(@hm_deck_healing_spells, @@hm_deck)
 
           # 8. Generate AI cards
-          generate_ai_dragons(@ai_deck_dragons, @ai_deck)
-          generate_ai_dire_wolves(@ai_deck_dire_wolves, @ai_deck)
-          generate_ai_healing_spells(@ai_deck_healing_spells, @ai_deck)
+          generate_ai_dragons(@ai_deck_dragons, @@ai_deck)
+          generate_ai_dire_wolves(@ai_deck_dire_wolves, @@ai_deck)
+          generate_ai_healing_spells(@ai_deck_healing_spells, @@ai_deck)
           
           append{@@hm_deck.each {|c| para c.name}}
           append{subtitle link("Enter battle") {visit '/battle'}}
@@ -138,24 +138,24 @@ class SummonerChronicles < Shoes
         end
 
 
-          
-    #    while @hm_player.hp > 0 and ai_player.hp > 0
-    #      puts "These are your beasts and spells you command. Choose one to summon:"
-    #      puts "\n"
-    #      hm_deck.each_with_index {|c,i| puts "#{i+1}. #{c.name}
-    #    Type => #{c.type}; Subtype => #{c.subtype}; Attributes => #{c.attributes}\n"}
-    #    prompt
-    #      hm_card = hm_deck[(gets.to_i) - 1]
-    #      ai_card = ai_deck.sample
-##button "test it" do
-#append {@@hm_deck.each {|c| para c.name}}
-#end
-#@@hm_deck = ["dasdas", "asdasdas"]
-@selection = []
-@@hm_deck.each {|c| @selection << c.name}
-@card = list_box items: @selection
+              @ai_card = @@ai_deck.sample
 
-#fight_turn
+#Flow of stacks for each card with all properties
+              para "These are your beasts and spells you command. Choose one to summon:"
+              flow do
+                @@hm_deck.each_with_index {|c,i|
+                  stack do
+                      para "#{i+1}. #{c.name}\nType => #{c.type}\nSubtype => #{c.subtype}\nAttributes => #{c.attributes}"
+                  end
+                }
+              end
+
+
+
+
+              button "Fight" do
+              fight_turn(@hm_card, @ai_card, @@hm_player, @@ai_player, @arena)
+              end
 
 
 
@@ -169,11 +169,11 @@ class SummonerChronicles < Shoes
      #   end # end while
 
 
-    #        if @hm_player.hp > ai_player.hp
-    #          puts "#{@hm_player.name} is victorious!"
-    #        elsif ai_player.hp > @hm_player.hp
+    #        if @@hm_player.hp > ai_player.hp
+    #          puts "#{@@hm_player.name} is victorious!"
+    #        elsif ai_player.hp > @@hm_player.hp
     #          puts "#{ai_player.name} is victorious!"
-    #        elsif @hm_player.hp == ai_player.hp
+    #        elsif @@hm_player.hp == ai_player.hp
     #          puts "There is no victor, you will live to see another day!"
     #          Process.exit(0)
     #        elsif hm_deck.length == 0 or ai_deck.length == 0

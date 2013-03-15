@@ -31,14 +31,12 @@ module DragonsDireWolves
         ai_deck << healing_spell = HEAL.new(healing_spell)}
       end
 
-      def fight_turn(hm_card)
-          ## The cards effects are activated (opponent sequence is random)
-
-          players = [@hm_player, @ai_player]
+      def fight_turn(hm_card, ai_card, hm_player, ai_player, arena)
+          
+          players = [hm_player, ai_player]
           opponent = players.sample
-
-          if opponent == @ai_player
-                  own = @hm_player
+          if opponent == ai_player
+                  own = hm_player
                   card = hm_card
                   append {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
@@ -52,8 +50,8 @@ module DragonsDireWolves
             else
             end
 
-            opponent = @hm_player
-                  own = @ai_player
+            opponent = hm_player
+                  own = ai_player
                   card = ai_card
                   append {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
@@ -67,8 +65,8 @@ module DragonsDireWolves
             else
             end
 
-          elsif opponent == @hm_player
-                  own = @ai_player
+          elsif opponent == hm_player
+                  own = ai_player
                   card = ai_card
                   append {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
@@ -82,8 +80,8 @@ module DragonsDireWolves
             else
             end
 
-            opponent = @ai_player
-                  own = @hm_player
+            opponent = ai_player
+                  own = hm_player
                   card = hm_card
                   append {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
