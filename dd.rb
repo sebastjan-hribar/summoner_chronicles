@@ -12,7 +12,6 @@ class SummonerChronicles < Shoes
   url '/battle',                    :battle
 
 
-
     def welcome
       flow do
         title TITLE.upcase, :align => "center"
@@ -20,7 +19,6 @@ class SummonerChronicles < Shoes
         subtitle link("Prepare for battle") {visit '/battle_preparation'}
       end
     end #welcome end
-
 
 
     def battle_preparation
@@ -63,25 +61,24 @@ class SummonerChronicles < Shoes
           @@ai_deck = []
 
 
-          para "-----------------------------------------------------------------------------"
+          para "********************************************************************"
 
           caption "Please select the number of cards for each type."
 
-          para "-----------------------------------------------------------------------------"
+          para "********************************************************************"
 
 
 
           # Select the number of each card types
-          
           para "Select the number of dragons. Default value is 0."
           @dragons_qty = list_box items: [0, 1, 2, 3, 4, 5], choose: 0
-
+          para "********************************************************************"
           para "Select the number of dire wolves. Default value is 0."
           @dire_wolves_qty = list_box items: [0, 1, 2, 3, 4, 5], choose: 0
-
+          para "********************************************************************"
           para "Select the number of healing spells. Default value is 0."
           @healing_qty = list_box items: [0, 1, 2, 3, 4, 5], choose: 0
-
+          para "********************************************************************"
 
 
           button "Prepare cards" do
@@ -104,10 +101,7 @@ class SummonerChronicles < Shoes
           generate_ai_dragons(@ai_deck_dragons, @@ai_deck)
           generate_ai_dire_wolves(@ai_deck_dire_wolves, @@ai_deck)
           generate_ai_healing_spells(@ai_deck_healing_spells, @@ai_deck)
-          
-          append {@@hm_deck.each {|c| para c.name}}
-          append {para "***********************"}
-          append {@@hm_deck.each {|c| para c.name}}
+
           append{subtitle link("Enter battle") {visit '/battle'}}
           end
         end
@@ -145,6 +139,7 @@ class SummonerChronicles < Shoes
 #Flow of stacks for each card with all properties
               para "These are your beasts and spells you command. Choose one to summon:"
               flow margin: 5 do
+
                 @@hm_deck.each_with_index {|c,i|
                   @a = stack margin: 3, width: 150, height: 200 do
                       if c.subtype == "dragon"

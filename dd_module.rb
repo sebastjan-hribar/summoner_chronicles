@@ -41,14 +41,12 @@ module DragonsDireWolves
                   #records << "#{own.name} played #{card.name} - #{card.subtype}."
                   results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  #records <<
+                  #records << "#{card.name} hits with: #{card.damage(arena)}"
                   results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
-                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  #records <<
+                  #records << "#{card.name} heals for: #{card.heal}"
                   results.prepend {para "#{card.name} heals for: #{card.heal}"}
-                         # para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -56,17 +54,15 @@ module DragonsDireWolves
             opponent = hm_player
                   own = ai_player
                   card = ai_card
-                  #records <<
+                  #records << "#{own.name} played #{card.name} - #{card.subtype}."
                   results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  #records <<
+                  #records << "#{card.name} hits with: #{card.damage(arena)}"
                   results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
-                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  #records <<
+                  #records << "#{card.name} heals for: #{card.heal}"
                   results.prepend {para "#{card.name} heals for: #{card.heal}"}
-                          #para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -74,17 +70,15 @@ module DragonsDireWolves
           elsif opponent == hm_player
                   own = ai_player
                   card = ai_card
-                  #records <<
+                  #records << "#{own.name} played #{card.name} - #{card.subtype}."
                   results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  #records <<
+                  #records << "#{card.name} hits with: #{card.damage(arena)}"
                   results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
-                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  #records <<
+                  #records << "#{card.name} heals for: #{card.heal}"
                   results.prepend {para "#{card.name} heals for: #{card.heal}"}
-                          #para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -92,17 +86,15 @@ module DragonsDireWolves
             opponent = ai_player
                   own = hm_player
                   card = hm_card
-                  #records <<
+                  #records << "#{own.name} played #{card.name} - #{card.subtype}."
                   results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  #records <<
+                  #records << "#{card.name} hits with: #{card.damage(arena)}"
                   results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
-                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  #records <<
+                  #records << "#{card.name} heals for: #{card.heal}"
                   results.prepend {para "#{card.name} heals for: #{card.heal}"}
-                         # para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -226,13 +218,13 @@ para"---------------------------------------------------------------------
       TITLE = "Welcome to Dragons and Dire Wolves"
 
       INTRODUCTION = "You are in the arena. At your disposal for battle are dragons, dire wolves
-                      and spells. You may choose between 20 and 23 cards all together."
+and spells. You may choose between 20 and 23 cards all together."
 
       NAME_PROMPT = "Please state your name, summoner, to be written in the Dragons' records."
 
       ARENA = "It is time to select the arena for the battle. Depending on the
-              selected arena, certain beasts will be granted more power.
-              Roll the dice by pressing Enter!"
+selected arena, certain beasts will be granted more power.
+Roll the dice by pressing Enter!"
 
 
 end
