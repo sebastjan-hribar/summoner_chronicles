@@ -31,21 +31,24 @@ module DragonsDireWolves
         ai_deck << healing_spell = HEAL.new(healing_spell)}
       end
 
-      def fight_turn(hm_card, ai_card, hm_player, ai_player, arena)
+      def fight_turn(hm_card, ai_card, hm_player, ai_player, arena, results, hm_deck, ai_deck)
           
           players = [hm_player, ai_player]
           opponent = players.sample
           if opponent == ai_player
                   own = hm_player
                   card = hm_card
-                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+                  #records << "#{own.name} played #{card.name} - #{card.subtype}."
+                  results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  append {para "#{card.name} hits with:"
-                          para puts card.damage(arena)}
+                  #records <<
+                  results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
+                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  append {para "#{card.name} heals for:"
-                          para card.heal}
+                  #records <<
+                  results.prepend {para "#{card.name} heals for: #{card.heal}"}
+                         # para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -53,14 +56,17 @@ module DragonsDireWolves
             opponent = hm_player
                   own = ai_player
                   card = ai_card
-                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+                  #records <<
+                  results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  append {para "#{card.name} hits with:"
-                          para card.damage(arena)}
+                  #records <<
+                  results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
+                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  append {para "#{card.name} heals for:"
-                          para card.heal}
+                  #records <<
+                  results.prepend {para "#{card.name} heals for: #{card.heal}"}
+                          #para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -68,14 +74,17 @@ module DragonsDireWolves
           elsif opponent == hm_player
                   own = ai_player
                   card = ai_card
-                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+                  #records <<
+                  results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  append {para "#{card.name} hits with:"
-                          para card.damage(arena)}
+                  #records <<
+                  results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
+                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  append {para "#{card.name} heals for:"
-                          para card.heal}
+                  #records <<
+                  results.prepend {para "#{card.name} heals for: #{card.heal}"}
+                          #para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
@@ -83,29 +92,31 @@ module DragonsDireWolves
             opponent = ai_player
                   own = hm_player
                   card = hm_card
-                  append {para "#{own.name} played #{card.name} - #{card.subtype}."}
+                  #records <<
+                  results.prepend {para "#{own.name} played #{card.name} - #{card.subtype}."}
             if card.respond_to? :attack
-                  append {para "#{card.name} hits with:"
-                          para card.damage(arena)}
+                  #records <<
+                  results.prepend {para "#{card.name} hits with: #{card.damage(arena)}"}
+                          #para card.damage(arena)}
                   card.effect(opponent, card, own, arena)
             elsif card.respond_to? :heal
-                  append {para "#{card.name} heals for:"
-                          para card.heal}
+                  #records <<
+                  results.prepend {para "#{card.name} heals for: #{card.heal}"}
+                         # para card.heal}
                   card.effect(opponent, card, own, arena)
             else
             end
           else
           end
 
-
-     #     hm_deck.delete(hm_card)
-     #     ai_deck.delete(ai_card)
-
-     #     puts "---------------------------------------------------------------------"
-     #     puts "#{@hm_player.name}'s health is #{@hm_player.hp}."
-     #     puts "#{ai_player.name}'s health is #{ai_player.hp}."
-     #     puts "---------------------------------------------------------------------"
-
+          results.prepend {
+para"---------------------------------------------------------------------
+#{hm_player.name}'s health is #{hm_player.hp}.
+#{ai_player.name}'s health is #{ai_player.hp}.
+---------------------------------------------------------------------"}
+        records = []
+        hm_deck.delete(hm_card)
+        ai_deck.delete(ai_card)
       end
 
 
@@ -222,5 +233,6 @@ module DragonsDireWolves
       ARENA = "It is time to select the arena for the battle. Depending on the
               selected arena, certain beasts will be granted more power.
               Roll the dice by pressing Enter!"
+
 
 end

@@ -31,7 +31,7 @@ class SummonerChronicles < Shoes
 
 
           @player_name = edit_line; @player_name_button = button "Submitt name" do 
-            @@hm_player = HMPLAYER.new(@player_name)
+            @@hm_player = HMPLAYER.new(@player_name.text)
             @player_name.clear
             @player_name_button.clear
             alert("Player #{@@hm_player.name} was created.")
@@ -105,7 +105,9 @@ class SummonerChronicles < Shoes
           generate_ai_dire_wolves(@ai_deck_dire_wolves, @@ai_deck)
           generate_ai_healing_spells(@ai_deck_healing_spells, @@ai_deck)
           
-          append{@@hm_deck.each {|c| para c.name}}
+          append {@@hm_deck.each {|c| para c.name}}
+          append {para "***********************"}
+          append {@@hm_deck.each {|c| para c.name}}
           append{subtitle link("Enter battle") {visit '/battle'}}
           end
         end
@@ -138,23 +140,41 @@ class SummonerChronicles < Shoes
         end
 
 
-              @ai_card = @@ai_deck.sample
+
 
 #Flow of stacks for each card with all properties
               para "These are your beasts and spells you command. Choose one to summon:"
-              flow do
+              flow margin: 5 do
                 @@hm_deck.each_with_index {|c,i|
-                  stack do
-                      para "#{i+1}. #{c.name}\nType => #{c.type}\nSubtype => #{c.subtype}\nAttributes => #{c.attributes}"
+                  @a = stack margin: 3, width: 150, height: 200 do
+                      if c.subtype == "dragon"
+                        background blue
+                        border black, strokewidth: 2
+                      elsif c.subtype == "dire wolf"
+                        background red
+                        border black, strokewidth: 2
+                      elsif c.subtype == "healing spell"
+                        background antiquewhite
+                        border black, strokewidth: 2
+                      else
+
+                      end
+                      para "#{i+1}. #{c.name}\n#{c.subtype}\n#{c.attributes}"
+                      #gumb za izbiro
+                      button "Select" do
+                        @hm_card = c
+                        @a.clear
+                      end
                   end
                 }
               end
 
-
-
-
               button "Fight" do
-              fight_turn(@hm_card, @ai_card, @@hm_player, @@ai_player, @arena)
+                @ai_card = @@ai_deck.sample
+                fight_turn(@hm_card, @ai_card, @@hm_player, @@ai_player, @arena, @results, @@hm_deck, @@ai_deck)
+              end
+              
+              @results = stack do
               end
 
 
