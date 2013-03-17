@@ -53,7 +53,7 @@ TODO
     of points. []
 02. Turns are counted and this is used for damage over time and so forth. []
 03. A card may have instant, delayed or prolonged effect. []
-04. GUI []
+04. GUI [in progress]
 05. Add Ice and Fire spells. []
 06. Add story. []
 07. Add records of the games played. []
