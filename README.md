@@ -51,10 +51,10 @@ TODO
 
 01. Review and refactor the HP and damage dealing system in terms of amount
     of points. []
-02. Turns are counted and this is used for damage over time and so forth. []
+02. Turns are counted and this is used for damage over time and so forth. [done]
 03. A card may have instant, delayed or prolonged effect. []
 04. GUI [in progress]
-05. Add Ice and Fire spells. []
+05. Add Ice and Fire spells. [done]
 06. Add story. []
 07. Add records of the games played. []
 08. Spelling check. []
