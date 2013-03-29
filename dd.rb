@@ -16,7 +16,6 @@ class SummonerChronicles < Shoes
         title TITLE.upcase, :align => "center"
         para INTRODUCTION, margin: 30, :align => "center"
 
-        image "images/title.png", width: 830, height: 530
         subtitle link("Prepare for duel") {visit '/battle_preparation'}, :align => "center"
       end
     end #welcome end
