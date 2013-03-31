@@ -12,17 +12,18 @@ class SummonerChronicles < Shoes
 
 
     def welcome
+      background honeydew
       flow margin: 20 do
         title TITLE.upcase, :align => "center"
         para INTRODUCTION, margin: 30, :align => "center"
-
+        @@images.each { |i| image i, width: 250, height: 250 }
         subtitle link("Prepare for duel") {visit '/battle_preparation'}, :align => "center"
       end
     end #welcome end
 
 
     def battle_preparation
-
+      background honeydew
           name_flow = flow margin: 25 do
               flow do
                   caption NAME_PROMPT
@@ -132,90 +133,99 @@ class SummonerChronicles < Shoes
 
 
     def battle
-        flow margin: 20 do
-        # 9. The player and the computer each play one card each turn until the health
-        # points of either one of them falls to 0. The card played is removed
-        # from the deck at the end of the turn.
-        # If after 25 turns they both still live, the winner is the one with higher
-        # health points.
+    background honeydew
+    flow do
+      background honeydew
+      flow width: 1500, margin: 20 do
+          # 9. The player and the computer each play one card each turn until the health
+          # points of either one of them falls to 0. The card played is removed
+          # from the deck at the end of the turn.
+          # If after 25 turns they both still live, the winner is the one with higher
+          # health points.
 
-        @arena_chosen = false
-        caption ARENA, :align => "center"
-        arena = flow margin: 20 do
-          arena_button = button "Roll the dice" do
-                @possible_arenas = ["High mountain", "Dark forrest"]
-                @arena = @possible_arenas.sample
-                if @arena == "High mountain"
-                  arena_button.clear
-                  arena.append {para "The battle will take place in the High mountain. Dragons will have
-                                a chance for a critical strike."}
-                elsif @arena == "Dark forrest"
-                arena_button.clear
-                  arena.append {para "The battle will take place in the Dark forrest. Dire wolves will have
-                                a chance for a critical strike."}
-                else
-                end
-              @arena_chosen = true
-          end
-        end
-
-
-
-
-#Flow of stacks for each card with all properties
-              para "These are your beasts and spells you command. Choose one to summon and unleash:"
-              flow margin: 5 do
-                flow margin_left: 5 do
-                  a = []
-                  @@hm_deck.each_with_index {|c,i|
-                    a[i] = stack margin: 3, width: 150, height: 200 do
-                        if c.subtype == "dragon"
-                          background royalblue
-                          border black, strokewidth: 2
-                        elsif c.subtype == "dire wolf"
-                          background forestgreen
-                          border black, strokewidth: 2
-                        elsif c.subtype == "healing spell"
-                          background violet
-                          border black, strokewidth: 2
-                        elsif c.subtype == "fire spell"
-                          background firebrick
-                          border black, strokewidth: 2
-                        elsif c.subtype == "ice spell"
-                          background lightblue
-                          border black, strokewidth: 2
-                        else
-
-                        end
-                        para "#{i+1}. #{c.name}\n#{c.subtype}\n#{c.attributes}"
-                          flow do
-                            image c.image, width: 30, height: 30, margin_right: 30
-                            button "Summon" do
-                              if @arena_chosen == false
-                                alert "Choose the arena first by rolling the dice!"
-                              else
-                                  @hm_card = c
-                                  a[i].clear
-                                  @@round +=1
-                                  @ai_card = @@ai_deck.sample
-                                  fight_round(@hm_card, @ai_card, @@hm_player, @@ai_player, @arena, @results, @@hm_deck, @@ai_deck, @@round)
-                              end
+                  stack width: 1500 do
+                    @arena_chosen = false
+                    caption ARENA, :align => "center"
+                    arena = flow margin: 20 do
+                      arena_button = button "Roll the dice" do
+                            @possible_arenas = ["High mountain", "Dark forrest"]
+                            @arena = @possible_arenas.sample
+                            if @arena == "High mountain"
+                              arena_button.clear
+                              arena.append {para "The battle will take place in the High mountain. Dragons will have
+                                            a chance for a critical strike.
+                                            "}
+                            elsif @arena == "Dark forrest"
+                            arena_button.clear
+                              arena.append {para "The battle will take place in the Dark forrest. Dire wolves will have
+                                            a chance for a critical strike.
+                                            "}
+                            else
                             end
+                          @arena_chosen = true
+                      end
+                  end
+
+
+
+                  stack width: 1000 do
+                      #Flow of stacks for each card with all properties
+                      para "These are your beasts and spells you command. Choose one to summon and unleash:"
+                      flow margin: 5 do
+                        flow margin_left: 5 do
+                          a = []
+                          @@hm_deck.each_with_index {|c,i|
+                            a[i] = stack margin: 3, width: 150, height: 200 do
+                                if c.subtype == "dragon"
+                                  background royalblue
+                                  border black, strokewidth: 2
+                                elsif c.subtype == "dire wolf"
+                                  background forestgreen
+                                  border black, strokewidth: 2
+                                elsif c.subtype == "healing spell"
+                                  background violet
+                                  border black, strokewidth: 2
+                                elsif c.subtype == "fire spell"
+                                  background firebrick
+                                  border black, strokewidth: 2
+                                elsif c.subtype == "ice spell"
+                                  background lightblue
+                                  border black, strokewidth: 2
+                                else
+                                end
+
+                                para "#{i+1}. #{c.name}\n#{c.subtype}\n#{c.attributes}"
+                                  flow do
+                                    image c.image, width: 30, height: 30, margin_right: 30
+                                    button "Summon" do
+                                      if @arena_chosen == false
+                                        alert "Choose the arena first by rolling the dice!"
+                                      else
+                                          @hm_card = c
+                                          a[i].clear
+                                          @@round +=1
+                                          @ai_card = @@ai_deck.sample
+                                          fight_round(@hm_card, @ai_card, @@hm_player, @@ai_player, @arena, @results, @@hm_deck, @@ai_deck, @@round)
+                                      end
+                                    end #button end
+                                end # flow end
+                            end #a stack end
+                          }
                         end
+                      end #flow end
+                      @@round = 0
+                    end #flow end
+                  end #stack end
+
+                  stack width: -1000 do
+                    caption "Round records:"
+                    @results = stack do
                     end
-                  }
-                end
-              end
-
-              @@round = 0
-
-              caption "Round records:"
-              @results = stack do
-              end
-            
-        end
+                  end
+        end # flow end
+      end #flow end
     end #battle end
 end
 
-Shoes.app title: "Summoner's Chronicles", width: 800, height: 950
+Shoes.app title: "Summoner's Chronicles", width: 1500, height: 950
 

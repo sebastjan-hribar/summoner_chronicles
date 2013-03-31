@@ -282,7 +282,12 @@ Health points:
             end
 
 
-            def effect(opponent)
+            def damage(arena)
+              @damage = @attack
+            end
+
+
+            def effect(opponent, card, own, arena)
               opponent.hp -= @attack
             end
       end
@@ -307,11 +312,20 @@ Health points:
               "Attack: " + @attack.to_s + "\n"
             end
 
+            def damage(arena)
+              @damage = @attack
+            end
 
-            def effect(opponent)
+            def effect(opponent, card, own, arena)
               opponent.hp -= @attack
             end
       end
+
+      # Images
+      @@images = ["images/dragon.png", "images/wolf.png",
+      "images/heal_potion.png", "images/fire.png",
+      "images/ice.png"]
+
 
       # Text
 
@@ -322,9 +336,12 @@ and spells. You may choose up to 25 cards."
 
       NAME_PROMPT = "Please state your name, summoner, to be written in the Dragons' records."
 
-      ARENA = "It is time to select the arena for the battle. Depending on the
+      ARENA = "
+It is time to select the arena for the battle. Depending on the
 selected arena, certain beasts will be granted more power.
-Roll the dice!"
+Roll the dice!
+
+"
 
 
 end
